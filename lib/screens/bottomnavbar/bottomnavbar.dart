@@ -52,6 +52,10 @@ List<Widget> screens = [
             current = index;
           });
         },
+        unselectedIconTheme: IconThemeData(color: Colors.grey, size: 20.0),
+        selectedIconTheme: IconThemeData(color: Colors.black, size: 20.0),
+        unselectedItemColor: Colors.grey,
+        selectedItemColor: Colors.black,
       ),
       body: screens[current]
     );

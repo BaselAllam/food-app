@@ -3,12 +3,17 @@ import 'package:food/widgets/item.dart';
 
 
 
-class ShoppingCart extends StatefulWidget {
+class Results extends StatefulWidget {
+
+final String className;
+
+Results(this.className);
+
   @override
-  _ShoppingCartState createState() => _ShoppingCartState();
+  _ResultsState createState() => _ResultsState();
 }
 
-class _ShoppingCartState extends State<ShoppingCart> {
+class _ResultsState extends State<Results> {
 
 Map<int, List> data = {
   0 : [
@@ -71,12 +76,19 @@ Map<int, List> data = {
         backgroundColor: Colors.transparent,
         elevation: 0.0,
         title: Text(
-          'Shopping Cart',
+          '${widget.className}',
           style: TextStyle(
             color: Colors.black,
             fontSize: 20.0,
             fontWeight: FontWeight.bold
           ),
+        ),
+        iconTheme: IconThemeData(color: Colors.black),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back_ios),
+          onPressed: () {
+            Navigator.pop(context);
+          }
         ),
       ),
       body: Container(

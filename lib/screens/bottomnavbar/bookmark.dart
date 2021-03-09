@@ -83,7 +83,7 @@ Map<int, List> data = {
         child: GridView.builder(
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
-            childAspectRatio: 1
+            childAspectRatio: 0.7
           ),
           scrollDirection: Axis.vertical,
           itemCount: data.length,

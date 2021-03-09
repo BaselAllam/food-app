@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food/screens/result.dart';
 import 'package:food/widgets/item.dart';
 
 
@@ -63,18 +64,18 @@ bool pressed = false;
           children: [
             headLineItem('Featured Item'),
             Container(
-              height: 290.0,
+              height: MediaQuery.of(context).size.height/2.5,
               child: scrollItem(350.0, 170.0),
             ),
             headLineItem('Trending'),
             Container(
-              height: 250.0,
-              child: scrollItem(200.0, 140.0)
+              height: MediaQuery.of(context).size.height/2.9,
+              child: scrollItem(MediaQuery.of(context).size.height/2.5, 140.0)
             ),
             headLineItem('Hot Offers'),
             Container(
-              height: 250.0,
-              child: scrollItem(200.0, 140.0)
+              height: MediaQuery.of(context).size.height/2.9,
+              child: scrollItem(MediaQuery.of(context).size.height/2.5, 140.0)
             ),
           ],
         ),
@@ -99,6 +100,10 @@ bool pressed = false;
           fontWeight: FontWeight.normal
         ),
       ),
+      onTap: () {
+        Navigator.push(context, MaterialPageRoute(builder: (_) {return Results(title);}));
+        //Navigator.pushNamed(context, 'results');
+      }
     );
   }
   scrollItem(double itemWidth, double imageHeight) {
