@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food/screens/result.dart';
 import 'package:food/widgets/item.dart';
-
+import 'package:food/screens/searchmap.dart';
 
 
 
@@ -62,6 +62,26 @@ bool pressed = false;
         child: ListView(
           scrollDirection : Axis.vertical,
           children: [
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.white54,
+                borderRadius: BorderRadius.circular(20.0),
+              ),
+              child: ListTile(
+                title: Text(
+                  'Search on Map',
+                  style: TextStyle(
+                    color: Colors.grey,
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.normal
+                  ),
+                ),
+                trailing: Icon(Icons.location_on, color: Colors.grey, size: 25.0),
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(fullscreenDialog: true, builder: (_) {return SearchMap();}));
+                },
+              ),
+            ),
             headLineItem('Featured Item'),
             Container(
               height: MediaQuery.of(context).size.height/2.5,

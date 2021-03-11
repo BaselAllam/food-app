@@ -59,17 +59,15 @@ bool secure = true;
                 children: [
                   Builder(
                     builder: (BuildContext context){
-                      return TextButton(
+                      return FlatButton(
                         child: Text(
                           'Sign in',
                           style: TextStyle(color: Colors.white, fontSize: 20.0, fontWeight: FontWeight.bold),
                         ),
-                        style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all(Colors.black)
-                        ),
+                        color: Colors.black,
                         onPressed: () {
                           if(!_formKey.currentState.validate()){
-                            ScaffoldMessenger.of(context).showSnackBar(snack('Some Field Required!'));
+                            Scaffold.of(context).showSnackBar(snack('Some Field Required!'));
                           }else{
                             Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) {return BottomNavBar();}));
                           }

@@ -27,23 +27,23 @@ List<Widget> screens = [
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            label: 'Home'
+            title: Text('Home'),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.shopping_basket),
-            label: 'Cart'
+            title: Text('Cart'),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.search),
-            label: 'Search'
+            title: Text('Search'),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.bookmark),
-            label: 'Bookmark'
+            title: Text('Bookmark'),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
-            label: 'Profile'
+            title: Text('Profile'),
           ),
         ],
         currentIndex: current,
