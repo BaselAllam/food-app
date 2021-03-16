@@ -2,15 +2,28 @@ import 'package:flutter/material.dart';
 import 'package:food/screens/result.dart';
 import 'package:food/widgets/item.dart';
 import 'package:food/screens/searchmap.dart';
-
+import 'package:scoped_model/scoped_model.dart';
+import 'package:food/models/mealscontroller.dart';
+import 'package:food/widgets/loading.dart';
 
 
 class HomePage extends StatefulWidget {
+
+final MealsController meals;
+HomePage(this.meals);
+
   @override
   _HomePageState createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
+
+@override
+void initState() {
+  widget.meals.getMeals();
+  super.initState();
+}
+
 
 Map<int, List> data = {
   0 : [
@@ -127,12 +140,22 @@ bool pressed = false;
     );
   }
   scrollItem(double itemWidth, double imageHeight) {
-    return ListView.builder(
-      scrollDirection: Axis.horizontal,
-      itemCount: data.length,
-      itemBuilder: (context, index){
-        return Item(itemWidth, imageHeight, data[index][0], data[index][1], data[index][2]);
-      }
+    return ScopedModelDescendant(
+      builder: (context, child, MealsController meals){
+        if(meals.isGetMealsLoading == true){
+          return Center(child: Loading());
+        }else if(meals.allMeals.isEmpty){
+          return Center(child: Text('No Meals Found'));
+        }else{
+          return ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: meals.allMeals.length,
+            itemBuilder: (context, index){
+              return Item(itemWidth, imageHeight, meals.allMeals[index].image, meals.allMeals[index].title, meals.allMeals[index].price);
+            }
+          );
+        }
+      } 
     );
   }
 }

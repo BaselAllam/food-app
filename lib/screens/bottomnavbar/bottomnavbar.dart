@@ -3,8 +3,9 @@ import 'package:food/screens/bottomnavbar/bookmark.dart';
 import 'package:food/screens/bottomnavbar/homepage.dart';
 import 'package:food/screens/bottomnavbar/profile.dart';
 import 'package:food/screens/bottomnavbar/search.dart';
-import 'package:food/screens/bottomnavbar/shoppingcart.dart';
-
+import 'package:food/screens/bottomnavbar/sell.dart';
+import 'package:scoped_model/scoped_model.dart';
+import 'package:food/models/mealscontroller.dart';
 
 
 class BottomNavBar extends StatefulWidget {
@@ -16,10 +17,6 @@ class _BottomNavBarState extends State<BottomNavBar> {
 
 int current = 0;
 
-List<Widget> screens = [
-  HomePage(), ShoppingCart(), Search(), BookMark(), Profile(),
-];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,8 +27,8 @@ List<Widget> screens = [
             title: Text('Home'),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_basket),
-            title: Text('Cart'),
+            icon: Icon(Icons.add),
+            title: Text('Add'),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.search),
@@ -57,7 +54,21 @@ List<Widget> screens = [
         unselectedItemColor: Colors.grey,
         selectedItemColor: Colors.black,
       ),
-      body: screens[current]
+      body: ScopedModelDescendant(
+        builder: (context, child, MealsController meals){
+          if(current == 0){
+            return HomePage(meals);
+          }else if(current == 1){
+            return Sell();
+          }else if(current == 2){
+            return Search();
+          }else if(current == 3){
+            return BookMark();
+          }else{
+            return Profile();
+          }
+        }
+      )
     );
   }
 }
